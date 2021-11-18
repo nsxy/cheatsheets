@@ -15,6 +15,8 @@ git config --global credential.helper store    保存密码(每次要输密码/�
 # 初始化
 ##############################################################################
 git init
+git clone <address> -b <branch_name> <path/to/directory>  # clones a git repo from the address into the given directory and checkout's the given branch
+git clone <address> -b <branch_name> --single-branch  # Clones a single branch
 
 
 ##############################################################################
@@ -128,6 +130,7 @@ git clean -df   #清理所有未track文件和文件夹, 常用, 但使用前确
 ##############################################################################
 git remote add origin <remote address>    在本地工作区目录下按照 GitHub 提示进行关联
 git remote rm origin                      解除错误关联
+git remote add my-remote <address> 	  # creates a remote (get the address from your git-server)
 git push -u origin master                 第一次将本地仓库推送至远程仓库（每次在本地提交后进行操作）
 git push origin master                    以后每次将本地仓库推送至远程仓库（每次在本地提交后进行操作）
 <remote address>:
@@ -175,7 +178,7 @@ git merge --no-ff -m "descriptions" <branch name>
 master分支              发布稳定版本
 dev分支                 发布开发版本
 <developer name>分支    个人开发分支（个人开发完成将该分支并入dev，同时保留该分支，继续开发）
-
+bug branch		fix bug and update dev & mater branch 
 
 ##############################################################################
 # Bug分支管理（建立单独分支进行bug修复）
@@ -227,8 +230,10 @@ git tag <tag name> <commit id>                              为指定commit位�
 git tag -a <tag name> -m "descriptions" <commit id>         为指定commit打标并添加描述
 git tag -d <tag name>                                       删除本地标签
 git push origin <tag name>                                  推送指定标签到远程
+git push --delete my-remote v1.0  			    # deletes the tag in my-remote (be carefore to not delete a branch)
 git push origin --tags                                      推送所有本地标签到远程
 git push origin :refs/tags/<tag name>                       删除远程标签（先删除本地标签）
+git fetch --tags                  			    # pulls the tags from remote
 
 ##############################################################################
 # rebase(换基)
